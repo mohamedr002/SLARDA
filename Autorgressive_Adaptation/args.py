@@ -5,7 +5,7 @@ parser = argparse.ArgumentParser()
 
 
 home_dir = os.getcwd()
-parser.add_argument('--experiment_description', default='Proposed', type=str,
+parser.add_argument('--experiment_description', default='B_to_C_tunning', type=str,
                     help='Experiment Description:Proposed_Method, Benchmarking, EEG, Cont_DA_tune,  Benchmarking, Src_guided_trial,  SL_DA_tied')
 parser.add_argument('--run_description', default='', type=str,
                     help='run_description : ')
@@ -15,9 +15,9 @@ parser.add_argument('--device', default='cuda', type=str,
                     help='cpu or cuda')
 parser.add_argument('--da_method', default='SLARDA', type=str,
                     help='Domain Adaptation method:DAN, SLARDA,SLARDA_inv, Source_Only_trainer')
-parser.add_argument('--base_model', default='CNN_Opp_HAR_SL', type=str,
+parser.add_argument('--base_model', default='EEG_M_SL', type=str,
                     help='The Base Feature extractor to be used: CNN_Opp_HAR_SL, CNN_SL_bn, EEG_M_SL')
-parser.add_argument('--selected_dataset', default='Opp_HAR', type=str,
+parser.add_argument('--selected_dataset', default='EEG', type=str,
                     help='Dataset of choice:  Paderborn_FD, Opp_HAR, EEG')
 parser.add_argument('--home_path', default=home_dir, type=str,
                     help='Project home directory')
