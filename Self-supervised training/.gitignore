@@ -1,0 +1,12 @@
+wandb/
+data/
+*.json
+*.yaml
+*.log
+**/__pycache__/**
+experiments_logs
+*.pyc
+trainer/__pycache__/training_evaluation.cpython-37.pyc
+trainer/ongoing_updates/CNN_MMD_CORAL - Copy.py
+*.pt
+args.py
