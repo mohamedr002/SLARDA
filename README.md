@@ -20,5 +20,4 @@
     - Select the corresponding based model: CNN_SL_bn, CNN_Opp_HAR_SL, EEG_M_SL
 
 2- Run 'train_CD.py' script
-================================================
 
