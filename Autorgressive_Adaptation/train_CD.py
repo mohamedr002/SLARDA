@@ -67,10 +67,11 @@ def main_train_cd():
     counter = 0
     src_counter = 0
     # for src_id, tgt_id in product(*src_tgt_product):
-    for src_id in ['b']:
-        for tgt_id in ['c']:
+    for src_id in ['a', 'b', 'c', 'd']:
+        for tgt_id in ['a', 'b', 'c', 'd']:
             if src_id != tgt_id:
                 # prepare save directory
+
                 # specify number of consecutive runs
                 for run_id in range(args.num_runs):
                     fix_randomness(run_id)

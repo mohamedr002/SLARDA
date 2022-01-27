@@ -6,6 +6,8 @@ class Config(object):
         self.reduced_cnn_size = 8
         self.num_classes = 3
         self.dropout = 0.5
+        self.training_mode = 'self_supervised'
+        self.cnn_feat_dim = 155
 
         self.kernel_size = 32
         self.cls_hidden_dim = 32
