@@ -36,3 +36,23 @@ Extensive experiments have been conducted on three real-world time series applic
 
 2- Run 'train_CD.py' script
 
+## Citation
+If you found this work useful for you, please consider citing it.
+```
+@article{amda_tim,
+  author={Ragab, Mohamed and Eldele, Emadeldeen and Chen, Zhenghua and Wu, Min and Li, Haoliang and Kwoh, Chee-Keong and Li, Xiaoli},
+  journal={IEEE Transactions on Neural Networks and Learning Systems}, 
+  title={Self-supervised Autoregressive Domain Adaptation for Time Series Data}, 
+  year={2022},
+  volume={},
+  number={},
+  pages={},
+  doi={}}
+```
+
+## Contact
+For any issues/questions regarding the paper or reproducing the results, please contact me.   
+Mohamed Ragab    
+School of Computer Science and Engineering (SCSE),   
+Nanyang Technological University (NTU), Singapore.   
+Email: mohamedr002{at}e.ntu.edu.sg   
