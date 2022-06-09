@@ -1,4 +1,4 @@
-# Self-supervised Autoregressive Domain Adaptation for Time Series Data (SLARDA) [[Paper](https://ieeexplore.ieee.org/abstract/document/9141312)]
+# Self-supervised Autoregressive Domain Adaptation for Time Series Data (SLARDA) [[Paper](https://arxiv.org/abs/2111.14834)]
 #### *by: Mohamed Ragab, Emadeldeen Eldele, Zhenghua Chen, Min Wu, Chee Keong Kwoh, and  Xiaoli Li*
 #### IEEE Transactions on Neural Networks and Learning Systems (TNNLS-22) (Impact Factor: 10.451).
 
