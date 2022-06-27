@@ -4,6 +4,7 @@ class Config(object):
         self.feat_dim = 32
         self.out_channels = 8
        
+        self.training_mode = 'self_supervised'
 
         # GRU disc Configs
         self.disc_hid_dim = 128
@@ -21,7 +22,7 @@ class Config(object):
         
         # Cross-domain Training
         self.num_epoch = 15
-        self.batch_size = 512 # best is 512
+        self.batch_size = 128 # best is 512
 
 
 
@@ -36,6 +37,7 @@ class Config(object):
         self.base_model = base_model_configs()
 
         self.SLARDA= SLARD_Configs()
+        self.Self_ensemble = Self_ensemble_Configs()
 
 class Supervised(object):
     def __init__(self):
@@ -62,7 +64,8 @@ class base_model_configs(object):
         self.kernel_size = 32
         self.cls_hidden_dim = 32
         self.AR = True
-
+        self.cnn_feat_dim = 155
+        self.training_mode = 'adaptation'
 # Cross-domain Configs
 class SLARD_Configs(object):
     def __init__(self):
@@ -77,4 +80,19 @@ class SLARD_Configs(object):
 
         self.teacher_wt  = 0.5 # Teacher only#,  0.005
         self.confidence_level = 0.9
+        self.momentum_wt =0.99
+
+
+class Self_ensemble_Configs(object):
+    def __init__(self):
+        self.optimizer = 'adam'
+        self.beta1 = 0.5
+        self.beta2 = 0.99
+        self.lr = 1e-4
+        self.lr_disc = 1e-4
+        self.gamma = 0.1
+        self.step_size = 50
+
+        self.teacher_wt  = 0.1# Teacher only#,  0.005
+        self.confidence_level = 0.95
         self.momentum_wt =0.99
