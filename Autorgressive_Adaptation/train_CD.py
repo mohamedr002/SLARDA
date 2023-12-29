@@ -66,11 +66,12 @@ def main_train_cd():
     # loop through domains
     counter = 0
     src_counter = 0
-    for src_id, tgt_id in product(*src_tgt_product):
-    # for src_id in ['a', 'b', 'c']:
-    #     for tgt_id in ['a', 'b','c']:
+    # for src_id, tgt_id in product(*src_tgt_product):
+    for src_id in ['a', 'b', 'c', 'd']:
+        for tgt_id in ['a', 'b', 'c', 'd']:
             if src_id != tgt_id:
                 # prepare save directory
+
                 # specify number of consecutive runs
                 for run_id in range(args.num_runs):
                     fix_randomness(run_id)
@@ -100,7 +101,7 @@ def main_train_cd():
                                    sync_tensorboard=False, reinit=True, dir=r"./visualize/", )
 
                     source_model, target_model = cross_domain_train(src_train_dl, src_valid_dl, src_test_dl,
-                                                                    tgt_train_dl, tgt_valid_dl, base_model,
+                                                                    tgt_train_dl, tgt_test_dl, base_model,
                                                                     src_id, tgt_id,
                                                                     device, logger, configs)
                     scores = cross_domain_test(source_model, target_model, src_id, tgt_id,

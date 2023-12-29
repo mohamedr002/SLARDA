@@ -123,6 +123,52 @@ class CNN_SL_bn(nn.Module):
         features = self.med_layer(full_features)
         predictions = self.Classifier(features)
         return predictions, (features,full_features)
+
+class CNN_AR(nn.Module):
+    def __init__(self, configs):
+        super(CNN_AR, self).__init__()
+
+        self.input_dim = configs.input_channels
+        self.dropout = configs.dropout
+        self.kernel_size = configs.kernel_size
+        self.hidden_dim = configs.cls_hidden_dim
+        self.out_dim = configs.num_classes
+        self.feature_dim = configs.cnn_feat_dim
+        self.training_mode  = configs.training_mode
+        self.encoder = nn.Sequential(
+            nn.Conv1d(self.input_dim, 8, kernel_size=self.kernel_size, stride=2, padding=1, dilation=1),
+            nn.BatchNorm1d(8),
+            nn.ReLU(),
+            nn.Conv1d(8, 8, kernel_size=3, stride=2, padding=1, dilation=1),
+            nn.BatchNorm1d(8),
+            nn.ReLU(),
+            nn.Conv1d(8, 8, kernel_size=3, stride=2, padding=1, dilation=1),
+            nn.BatchNorm1d(8),
+            nn.ReLU(),
+            nn.Conv1d(8, 8, kernel_size=3, stride=2, padding=1, dilation=1),
+            nn.BatchNorm1d(8),
+            nn.ReLU(),
+            nn.Conv1d(8, 8, kernel_size=3, stride=2, padding=1, dilation=1),
+            nn.BatchNorm1d(8),
+            nn.ReLU(),
+            nn.Conv1d(8, 8, kernel_size=8, stride=1, padding=1, dilation=1))
+        self.med_layer = nn.GRU(self.feature_dim, self.hidden_dim, num_layers=1, bidirectional=False, batch_first=True)
+        self.Classifier = nn.Sequential(
+            nn.Linear(self.hidden_dim, self.hidden_dim),
+            nn.ReLU(),
+            nn.Dropout(p=self.dropout),
+            nn.Linear(self.hidden_dim, self.out_dim))
+        self.cpc = CPC(8, 64, 30)
+
+    def forward(self, src):
+        # reshape input (batch_size, input_dim, sequence length)
+        src = src.view(src.size(0), self.input_dim, -1)
+        full_features = self.encoder(src)
+        features,_ = self.med_layer(full_features)
+        predictions = self.Classifier(features[:,-1,:])
+        return predictions, (features[:,-1,:],full_features)
+
+
 class CPC(nn.Module):
     def __init__(self, num_channels, gru_hidden_dim, timestep):
         super(CPC, self).__init__()

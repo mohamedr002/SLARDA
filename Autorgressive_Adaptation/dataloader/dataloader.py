@@ -45,13 +45,21 @@ class Load_Dataset(Dataset):
         if self.transform is not None:
             output = self.transform(self.x_data[index].view(self.num_channels, -1, 1))
             self.x_data[index] = output.view(self.x_data[index].shape)
+        single_sample = output
+        #         transformed_samples = apply_transformation(single_sample)
+        #
+        #         sample = {
+        #                   'transformed_samples': transformed_sample,
+        #                   'sample_ori': single_sample.squeeze(-1),
+        #                   'class_labels': int(self.y_data[index])
+        #         }
 
         return self.x_data[index], self.y_data[index]
 
     def __len__(self):
         return self.len
 
-
+#
 def data_generator(data_path, domain_id, configs):
     # loading path
     train_dataset = torch.load(os.path.join(data_path, "train_" + domain_id + ".pt"))
